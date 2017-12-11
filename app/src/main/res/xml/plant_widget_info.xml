@@ -16,8 +16,6 @@
     limitations under the License.
 -->
 
-<!-- TODO COMPLETED (1): Create a plant_widget_info.xml file and set updatePeriodMillis to 30 minutes -->
-
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialLayout="@layout/plant_widget"
     android:minHeight="40dp"

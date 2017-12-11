@@ -16,12 +16,12 @@
     limitations under the License.
 -->
 
-<!-- TODO COMPLETED (2): Create a plant_widget.xml file that contains an ImageView defaulting to @drawable/grass -->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <!-- TODO (1): Add an ImageView that displays water_drop_blue to act as the watering button -->
 
     <ImageView
         android:id="@+id/widget_plant_image"

@@ -14,9 +14,6 @@
             android:authorities="com.example.android.mygarden"
             android:exported="true" />
 
-        <!-- TODO COMPLETED (4): Add a reciever tag for PlantWidgetProvider and an intent-filter for APPWIDGET_UPDATE
-                        with meta data pointing to the plant_widget_info file -->
-
         <receiver android:name=".PlantWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -26,6 +23,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/plant_widget_info" />
         </receiver>
+
+        <!-- TODO (2): Create a plant watering service that extends IntentService and supports the
+        action ACTION_WATER_PLANTS which updates last_watered timestamp for all plants still alive -->
+        <!-- TODO (3): Add a service tag for PlantWateringService -->
 
         <activity
             android:name=".ui.MainActivity"
