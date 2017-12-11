@@ -25,6 +25,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ import static com.example.android.mygarden.provider.PlantContract.PATH_PLANTS;
 public class PlantDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String LOG_TAG = PlantDetailActivity.class.getSimpleName();
     private static final int SINGLE_LOADER_ID = 200;
     public static final String EXTRA_PLANT_ID = "com.example.android.mygarden.extra.PLANT_ID";
     long mPlantId;
@@ -46,6 +48,8 @@ public class PlantDetailActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(LOG_TAG, "-> onCreate");
+
         setContentView(R.layout.activity_plant_detail);
         mPlantId = getIntent().getLongExtra(EXTRA_PLANT_ID, PlantContract.INVALID_PLANT_ID);
         // This activity displays single plant information that is loaded using a cursor loader
@@ -53,10 +57,13 @@ public class PlantDetailActivity extends AppCompatActivity
     }
 
     public void onBackButtonClick(View view) {
+        Log.v(LOG_TAG, "-> onBackButtonClick");
         finish();
     }
 
     public void onWaterButtonClick(View view) {
+        Log.v(LOG_TAG, "-> onWaterButtonClick");
+
         //check if already dead then can't water
         Uri SINGLE_PLANT_URI = ContentUris.withAppendedId(
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLANTS).build(), mPlantId);
@@ -77,6 +84,8 @@ public class PlantDetailActivity extends AppCompatActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.v(LOG_TAG, "-> onCreateLoader");
+
         Uri SINGLE_PLANT_URI = ContentUris.withAppendedId(
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLANTS).build(), mPlantId);
         return new CursorLoader(this, SINGLE_PLANT_URI, null,
@@ -85,6 +94,8 @@ public class PlantDetailActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        Log.v(LOG_TAG, "-> onLoadFinished");
+
         if (cursor == null || cursor.getCount() < 1) return;
         cursor.moveToFirst();
         int createTimeIndex = cursor.getColumnIndex(PlantContract.PlantEntry.COLUMN_CREATION_TIME);
@@ -118,10 +129,12 @@ public class PlantDetailActivity extends AppCompatActivity
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        Log.v(LOG_TAG, "-> onLoaderReset");
     }
 
     public void onCutButtonClick(View view) {
+        Log.v(LOG_TAG, "-> onCutButtonClick");
+
         Uri SINGLE_PLANT_URI = ContentUris.withAppendedId(
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLANTS).build(), mPlantId);
         getContentResolver().delete(SINGLE_PLANT_URI, null, null);

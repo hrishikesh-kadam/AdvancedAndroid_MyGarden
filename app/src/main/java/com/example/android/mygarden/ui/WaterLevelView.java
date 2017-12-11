@@ -9,12 +9,14 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.android.mygarden.R;
 
 public class WaterLevelView extends View {
 
+    private static final String LOG_TAG = WaterLevelView.class.getSimpleName();
     private float mRadius;
     private float mStrokeWidth;
     private int mValue;
@@ -25,6 +27,8 @@ public class WaterLevelView extends View {
 
     public WaterLevelView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        Log.v(LOG_TAG, "-> WaterLevelView()");
+
         mContext = context;
         TypedArray attrArray = context.getTheme().obtainStyledAttributes(
                 attrs,
@@ -49,6 +53,8 @@ public class WaterLevelView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Log.v(LOG_TAG, "-> onDraw");
+
         int colorPrimary = ContextCompat.getColor(mContext, R.color.dark_blue);
         int colorPrimaryLight = ContextCompat.getColor(mContext, R.color.light_blue);
 
@@ -72,6 +78,8 @@ public class WaterLevelView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.v(LOG_TAG, "-> onMeasure");
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int desiredWidth = (int) (2 * mRadius + mStrokeWidth);
@@ -105,6 +113,8 @@ public class WaterLevelView extends View {
     }
 
     public void setValue(int value) {
+        Log.v(LOG_TAG, "-> setValue");
+
         mValue = value;
         invalidate();
     }

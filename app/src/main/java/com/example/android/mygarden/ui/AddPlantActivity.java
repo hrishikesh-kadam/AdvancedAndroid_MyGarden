@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -28,12 +29,16 @@ import com.example.android.mygarden.R;
 import com.example.android.mygarden.provider.PlantContract;
 
 public class AddPlantActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = AddPlantActivity.class.getSimpleName();
     private RecyclerView mTypesRecyclerView;
     private PlantTypesAdapter mTypesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(LOG_TAG, "-> onCreate");
+
         setContentView(R.layout.activity_add_plant);
 
         // Plant types are displayed as a recycler view using PlantTypesAdapter
@@ -52,6 +57,8 @@ public class AddPlantActivity extends AppCompatActivity {
      * @param view
      */
     public void onPlantTypeClick(View view) {
+        Log.v(LOG_TAG, "-> onPlantTypeClick");
+
         // When the chosen plant type is clicked, create a new plant and set the creation time and
         // water time to now
         // Extract the plant type from the tag
@@ -69,6 +76,7 @@ public class AddPlantActivity extends AppCompatActivity {
     }
 
     public void onBackButtonClick(View view) {
+        Log.v(LOG_TAG, "-> onBackButtonClick");
         finish();
     }
 }

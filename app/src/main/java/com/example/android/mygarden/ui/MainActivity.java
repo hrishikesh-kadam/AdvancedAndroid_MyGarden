@@ -26,6 +26,7 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -39,14 +40,16 @@ public class MainActivity
         extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final int GARDEN_LOADER_ID = 100;
     private PlantListAdapter mAdapter;
-
     private RecyclerView mGardenRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(LOG_TAG, "-> onCreate");
+
         setContentView(R.layout.activity_main);
 
         // The main activity displays the garden as a grid layout recycler view
@@ -62,6 +65,8 @@ public class MainActivity
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        Log.v(LOG_TAG, "-> onCreateLoader");
+
         Uri PLANT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH_PLANTS).build();
         return new CursorLoader(this, PLANT_URI, null,
                 null, null, PlantEntry.COLUMN_CREATION_TIME);
@@ -69,16 +74,20 @@ public class MainActivity
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        Log.v(LOG_TAG, "-> onLoadFinished");
+
         cursor.moveToFirst();
         mAdapter.swapCursor(cursor);
     }
 
     @Override
     public void onLoaderReset(Loader loader) {
-
+        Log.v(LOG_TAG, "-> onLoaderReset");
     }
 
     public void onPlantClick(View view) {
+        Log.v(LOG_TAG, "-> onPlantClick");
+
         ImageView imgView = (ImageView) view.findViewById(R.id.plant_list_item_image);
         long plantId = (long) imgView.getTag();
         Intent intent = new Intent(getBaseContext(), PlantDetailActivity.class);
@@ -88,6 +97,8 @@ public class MainActivity
 
 
     public void onAddFabClick(View view) {
+        Log.v(LOG_TAG, "-> onAddFabClick");
+
         Intent intent = new Intent(this, AddPlantActivity.class);
         startActivity(intent);
     }
