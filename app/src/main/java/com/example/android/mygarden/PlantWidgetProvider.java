@@ -31,11 +31,12 @@ public class PlantWidgetProvider extends AppWidgetProvider {
 
     private static final String LOG_TAG = PlantWidgetProvider.class.getSimpleName();
 
-    // TODO COMPLETED (1): Modify updateAppWidget method to take an image recourse and call
-    // setImageViewResource to update the widget’s image
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int imgRes, int appWidgetId) {
         Log.v(LOG_TAG, "-> updateAppWidget");
+
+        // TODO (3): Set the click handler to open the DetailActivity for plant ID,
+        // or the MainActivity if plant ID is invalid
 
         // Create an Intent to launch MainActivity when clicked
         Intent intent = new Intent(context, MainActivity.class);
@@ -67,16 +68,16 @@ public class PlantWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         Log.v(LOG_TAG, "-> onUpdate");
 
-        // TODO COMPLETED (4): Call startActionUpdatePlantWidgets in onUpdate as well as in AddPlantActivity and PlantDetailActivity (add and delete plants)
         //Start the intent service update widget action, the service takes care of updating the widgets UI
         PlantWateringService.startActionUpdatePlantWidgets(context);
     }
 
+    // TODO (2): Modify updatePlantWidgets and updateAppWidget to pass the plant ID as well as a boolean
+    // to show/hide the water button
+
     public static void updatePlantWidgets(Context context, AppWidgetManager appWidgetManager,
                                           int imgRes, int[] appWidgetIds) {
         Log.v(LOG_TAG, "-> updatePlantWidgets");
-
-        // TODO COMPLETED (2): Move the updateAppWidget loop to a new method called updatePlantWidgets and pass through the image recourse
 
         for (int appWidgetId : appWidgetIds) {
             updateAppWidget(context, appWidgetManager, imgRes, appWidgetId);
