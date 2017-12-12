@@ -24,8 +24,6 @@
                 android:resource="@xml/plant_widget_info" />
         </receiver>
 
-        <!-- TODO COMPLETED (3): Add a service tag for PlantWateringService -->
-
         <service android:name=".PlantWateringService" />
 
         <activity

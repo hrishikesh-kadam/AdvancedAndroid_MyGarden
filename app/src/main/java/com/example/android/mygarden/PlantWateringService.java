@@ -29,9 +29,6 @@ import com.example.android.mygarden.utils.PlantUtils;
 import static com.example.android.mygarden.provider.PlantContract.BASE_CONTENT_URI;
 import static com.example.android.mygarden.provider.PlantContract.PATH_PLANTS;
 
-// TODO COMPLETED (2): Create a plant watering service that extends IntentService and supports the
-// action ACTION_WATER_PLANTS which updates last_watered timestamp for all plants still alive
-
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
@@ -40,6 +37,9 @@ public class PlantWateringService extends IntentService {
 
     public static final String LOG_TAG = PlantWateringService.class.getSimpleName();
     public static final String ACTION_WATER_PLANTS = "com.example.android.mygarden.action.water_plants";
+    // TODO (3): Create a new action ACTION_UPDATE_PLANT_WIDGETS to handle updating widget UI and
+    // implement handleActionUpdatePlantWidgets to query the plant closest to dying and call
+    // updatePlantWidgets to refresh widgets
 
     public PlantWateringService() {
         super("PlantWateringService");
