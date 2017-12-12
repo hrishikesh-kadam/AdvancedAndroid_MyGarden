@@ -40,9 +40,6 @@ import static com.example.android.mygarden.provider.PlantContract.PATH_PLANTS;
  */
 public class PlantWateringService extends IntentService {
 
-    // TODO COMPLETED (1): Change ACTION_WATER_PLANTS to ACTION_WATER_PLANT and
-    // use EXTRA_PLANT_ID to pass the plant ID to the service and update the query to use SINGLE_PLANT_URI
-
     public static final String LOG_TAG = PlantWateringService.class.getSimpleName();
     public static final String ACTION_WATER_PLANT = "com.example.android.mygarden.action.water_plant";
     public static final String ACTION_UPDATE_PLANT_WIDGETS = "com.example.android.mygarden.action.update_plant_widgets";
